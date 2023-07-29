@@ -195,4 +195,4 @@ In certain cases, you may need to open a new tab or window while working in VS C
 
 ![Allow clipboard access in the browser](images/vscode-web/allow-clipboard-access.png)
 
-* Safari: In the Safari browser, go to **Preferences...** > **Websites** > **Pop-up Windows** > the domain you're accessing (for example, `vscode.dev`), and select **Allow** from the dropdown.
+* Safari: In the Safari browser, go to **Preferences...** > **Websites** > **Pop-up Windows** > the domain you're accessing (for example, `vscode.dev`), and select **Allow** from the dropdown

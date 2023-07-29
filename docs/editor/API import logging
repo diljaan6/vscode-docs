@@ -1,0 +1,55 @@
+API import logging
+from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
+API_TOKEN ='TO6294646462:AAFbFia01foZ9Tk0HV0obP2xciKjIXDILdwKEN'
+
+# Enable logging
+logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+                     level=logging.INFO)
+
+logger = logging.getLogger(__name__)
+
+# Command handlers
+
+
+def start(update, context):
+    """Send a welcome message when the command /start is issued."""
+    update.message.reply_text('Hello! I am your Telegram bot. Send me a message and I will reply.')
+
+def help_command(update, context):
+    """Send a help message when the command /help is issued."""
+    update.message.reply_text('This is a simple Telegram bot. You can send me any message, and I will reply.')
+
+def echo(update, context):
+    """Echo the user's message."""
+    update.message.reply_text(update.message.text)
+
+# Error handler
+def error(update, context):
+    """Log Errors caused by Updates."""
+    logger.warning('Update "%s" caused error "%s"', update, context.error)
+
+def main():
+    # Create the Updater and pass your bot's API token.
+    updater = Updater(API_TOKEN, use_context=True)
+
+    # Get the dispatcher to register handlers
+    dp = updater.dispatcher
+
+    # Register command handlers
+    dp.add_handler(CommandHandler("start", start))
+    dp.add_handler(CommandHandler("help", help_command))
+
+    # Register a message handler
+    dp.add_handler(MessageHandler(Filters.text & ~Filters.command, echo))
+
+    # Register an error handler
+    dp.add_error_handler(error)
+
+    # Start the Bot
+    updater.start_polling()
+
+    # Run the bot until the user presses Ctrl-C
+    updater.idle()
+
+if __name__ == '__main__':
+    main()
